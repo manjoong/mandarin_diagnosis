@@ -1,9 +1,11 @@
 package com.example.user.softwareengineering;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
@@ -25,24 +27,32 @@ public class ListViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
 
-        ListView listView = (ListView) findViewById(R.id.listView);
+        final ListView listView = (ListView) findViewById(R.id.listView);
 
         DiagnosisAdapter adapter = new DiagnosisAdapter();
 
         // 임의적으로 adapter에 데이터를 추가했으나,
         // 이미지 검색을 하고 결과를 받으면 일치하는 갯수만큼 for 반복문으로 adapter에 각 진단 객체 추가
 
-        adapter.addItem(new DiagnosisItem("병1", "90%", R.mipmap.ic_launcher));
-        adapter.addItem(new DiagnosisItem("병2", "80%", R.mipmap.ic_launcher));
-        adapter.addItem(new DiagnosisItem("병3", "70%", R.mipmap.ic_launcher));
-        adapter.addItem(new DiagnosisItem("병4", "60%", R.mipmap.ic_launcher));
-        adapter.addItem(new DiagnosisItem("병5", "50%", R.mipmap.ic_launcher));
-        adapter.addItem(new DiagnosisItem("병6", "40%", R.mipmap.ic_launcher));
-        adapter.addItem(new DiagnosisItem("병7", "30%", R.mipmap.ic_launcher));
-        adapter.addItem(new DiagnosisItem("병8", "20%", R.mipmap.ic_launcher));
-        adapter.addItem(new DiagnosisItem("병9", "10%", R.mipmap.ic_launcher));
+        final DiagnosisItem[] diagnosisItems = new DiagnosisItem[10];
+
+        for(int i=0; i<10; i++) {
+            diagnosisItems[i] = new DiagnosisItem("병" + i, (90-i*10) + "%", R.mipmap.ic_launcher);
+            adapter.addItem(diagnosisItems[i]);
+        }
 
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String name = diagnosisItems[position].getName();
+
+                Intent myIntent = new Intent(getApplicationContext(), DiseaseActivity.class);
+                myIntent.putExtra("name", name);
+                startActivity(myIntent);
+            }
+        });
     }
 
     class DiagnosisAdapter extends BaseAdapter {
@@ -53,7 +63,7 @@ public class ListViewActivity extends AppCompatActivity {
             return items.size();
         }
 
-        public void addItem(DiagnosisItem item) {
+        private void addItem(DiagnosisItem item) {
             items.add(item);
         }
 

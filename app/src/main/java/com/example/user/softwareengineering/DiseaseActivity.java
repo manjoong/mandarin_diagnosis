@@ -1,7 +1,9 @@
 package com.example.user.softwareengineering;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 /**
  *  ListViewActivity에서 선택된 진단에 대한 정보를 보여주는 액티비티
@@ -17,6 +19,12 @@ public class DiseaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disease);
+
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+
+        TextView txtDiseaseName = (TextView) findViewById(R.id.txtDiseaseName);
+        txtDiseaseName.setText(name);
 
     }
 }
