@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class DiagnosisItemView extends LinearLayout {
 
-    TextView txtName, txtPercent;
+    TextView txtName, txtSymptom;
     ImageView imageView;
 
     public DiagnosisItemView(Context context) {
@@ -34,7 +34,7 @@ public class DiagnosisItemView extends LinearLayout {
         inflater.inflate(R.layout.diagnosis_item, this, true);
 
         txtName = (TextView) findViewById(R.id.txtName);
-        txtPercent = (TextView) findViewById(R.id.txtPercent);
+        txtSymptom = (TextView) findViewById(R.id.txtSymptom);
         imageView = (ImageView) findViewById(R.id.imageView);
 
     }
@@ -43,8 +43,8 @@ public class DiagnosisItemView extends LinearLayout {
         txtName.setText(name);
     }
 
-    public void setPercent(String percent) {
-        txtPercent.setText(percent);
+    public void setSymptom(String symptom) {
+        txtSymptom.setText(symptom);
     }
 
     public void setImage(int resId) {

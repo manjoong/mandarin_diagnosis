@@ -22,9 +22,7 @@
         <activity android:name=".MenuActivity"></activity>
         <activity android:name=".VisualSearchActivity"></activity>
         <activity android:name=".KeySearchActivity"></activity>
-        <activity android:name=".ListViewActivity"></activity>
         <activity android:name=".DiseaseActivity"></activity>
-        <activity android:name=".ManagementActivity"></activity>
     </application>
 
 </manifest>

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SoftwareEngineering</string>
+    <string name="keysearchactivity">KeySearchActivity</string>
 </resources>

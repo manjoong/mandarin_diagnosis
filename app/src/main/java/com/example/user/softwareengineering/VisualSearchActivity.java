@@ -84,14 +84,11 @@ public class VisualSearchActivity extends AppCompatActivity {
                     // startActivity(myIntent);를 startActivityForResult(myIntent, 요청코드); 로 바꾼다.
                     // VisualSearchActivity에서 사진을 보내므로 결과 또한 해당 액티비티에서 받아서 사용한다.
 
-                    Intent myIntent = new Intent(getApplicationContext(), ListViewActivity.class);
+                    Intent myIntent = new Intent(getApplicationContext(), DiseaseActivity.class);
                     startActivity(myIntent);
                 }
-                else {
-                    // 사진을 업로드 하지 않은 경우 경고 메시지 출력
-
+                else    // 사진을 업로드 하지 않은 경우 경고 메시지 출력
                     showMessage();
-                }
             }
         });
 

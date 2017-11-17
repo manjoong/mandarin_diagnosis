@@ -8,14 +8,23 @@ package com.example.user.softwareengineering;
 public class DiagnosisItem {
 
     String name;        // 진단 or 병충해 이름
-    String percent;     // 진단의 경우 정확도
+    String symptom;     // 진단의 경우 정확도
     int resId;          // 진단의 사례 사진
+    int num;
 
-    public DiagnosisItem(String name, String percent, int resId) {
+    public DiagnosisItem(int num, String name, String symptom, int resId) {
+        this.num = num;
         this.name = name;           //  생성자
-        this.percent = percent;
+        this.symptom = symptom;
         this.resId = resId;
+    }
 
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public String getName() {
@@ -26,12 +35,12 @@ public class DiagnosisItem {
         this.name = name;
     }
 
-    public String getPercent() {
-        return percent;
+    public String getSymptom() {
+        return symptom;
     }
 
-    public void setPercent(String percent) {
-        this.percent = percent;
+    public void setSymptom(String symptom) {
+        this.symptom = symptom;
     }
 
     public int getResId() {
@@ -44,7 +53,7 @@ public class DiagnosisItem {
 
     @Override
     public String toString() {
-        return "DiagnosisItem{" + "name='" + name + '\'' + ", percent='" + percent + '\'' + '}';
+        return "DiagnosisItem{" + "name='" + name + '\'' + ", symptom='" + symptom + '\'' + '}';
 
     }   // 객체의 데이터를 스트링화
 }
