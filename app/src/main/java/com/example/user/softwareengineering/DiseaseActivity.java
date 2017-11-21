@@ -20,13 +20,14 @@ import android.widget.TextView;
 public class DiseaseActivity extends AppCompatActivity {
 
     int num;
-    String name;
+    String name_ko;
+    String name_eg;
     String symptom;
     String content;
     String management;
     ScrollView scrollView;
 
-    TextView txtDiseaseName, txtSymptom, txtContent, txtManagement;
+    TextView txtDiseaseNameKorean, txtDiseaseNameEnglish, txtSymptom, txtContent, txtManagement;
     ImageView imageView;
 
     SQLiteDatabase db;
@@ -42,12 +43,13 @@ public class DiseaseActivity extends AppCompatActivity {
 
         imageView = (ImageView) findViewById(R.id.imageView2);
 
-        txtDiseaseName = (TextView) findViewById(R.id.txtDiseaseName);
+        txtDiseaseNameKorean = (TextView) findViewById(R.id.txtDiseaseNameKorean);
+        txtDiseaseNameEnglish = (TextView) findViewById(R.id.txtDiseaseNameEnglish);
 
         scrollView = (ScrollView) findViewById(R.id.scrollView);
 
         Intent intent = getIntent();
-        name = intent.getStringExtra("BUG_NAME");
+        name_ko = intent.getStringExtra("BUG_NAME");
 
         setTextView();
     }
@@ -56,20 +58,22 @@ public class DiseaseActivity extends AppCompatActivity {
         db = openOrCreateDatabase("bugs.db", MODE_PRIVATE, null);
 
         if(db != null) {
-            String sql = "select bugNum, bugName_eg, bugName_ko, symptom, content, management from bug where bugName_ko = \"" + name + "\";";
+            String sql = "select bugNum, bugName_eg, bugName_ko, symptom, content, management from bug where bugName_ko = \"" + name_ko + "\";";
 
             Cursor cursor = db.rawQuery(sql, null);
 
             for(int i = 0; i < cursor.getCount(); i++) {
                 cursor.moveToNext();
                 num = cursor.getInt(0);
-                name = cursor.getString(2) + ", " + cursor.getString(1);
+                name_ko = cursor.getString(2);
+                name_eg = cursor.getString(1);
                 symptom = cursor.getString(3);
                 content = cursor.getString(4);
                 management = cursor.getString(5);
             }
 
-            txtDiseaseName.setText(name);
+            txtDiseaseNameKorean.setText(name_ko);
+            txtDiseaseNameEnglish.setText(name_eg);
             txtSymptom.setText(symptom);
             txtContent.setText(content);
             txtManagement.setText(management);
@@ -112,10 +116,6 @@ public class DiseaseActivity extends AppCompatActivity {
                 return R.drawable.bug15;
         }
 
-        return R.drawable.bug1;
+        return R.mipmap.ic_launcher;
     }
 }
-
-
-
-

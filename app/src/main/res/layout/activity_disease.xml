@@ -6,13 +6,24 @@
     android:gravity="center_horizontal">
 
     <TextView
-        android:id="@+id/txtDiseaseName"
+        android:id="@+id/txtDiseaseNameKorean"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="이름"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtDiseaseNameEnglish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:gravity="center_vertical|center_horizontal"
         android:text="이름"
         android:textSize="16dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <ImageView
         android:id="@+id/imageView2"
@@ -29,16 +40,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="증상"
+                android:textSize="24dp"/>
 
             <TextView
                 android:id="@+id/txtSymptom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
                 android:layout_margin="8dp"
                 android:text="증상"
                 android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="설명"
+                android:textSize="24dp"/>
 
             <TextView
                 android:id="@+id/txtExplanation"
@@ -49,10 +74,18 @@
                 android:textSize="16dp" />
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="처치 방법"
+                android:textSize="24dp"/>
+
+            <TextView
                 android:id="@+id/txtManagement"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:gravity="center_horizontal|center_vertical"
                 android:text="처리방법"
                 android:textSize="16dp"/>
 

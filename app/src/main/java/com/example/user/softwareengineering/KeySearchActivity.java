@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -134,7 +133,6 @@ public class KeySearchActivity extends AppCompatActivity {
             String sql;
 
             if(!bugName_ko.equals("전체보기")) {
-                Toast.makeText(this, bugName_ko, Toast.LENGTH_SHORT).show();
                 sql = "select bugNum, bugName_ko, symptom from bug where bugName_ko = \"" + bugName_ko + "\";";
             }
             else {

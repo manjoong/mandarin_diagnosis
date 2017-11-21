@@ -1,6 +1,7 @@
 package com.example.user.softwareengineering;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  *  애플리케이션을 실행하면 제일 처음에 보이는 액티비티
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
+
         scroll = (ScrollView) findViewById(R.id.scroll);
 
         txtSample = (TextView) findViewById(R.id.txtSample);
@@ -50,14 +52,22 @@ public class MainActivity extends AppCompatActivity {
                              + " / " + cursor.getString(5));
                 }
             }
-        });*/
+        });
 
-        /*
+
+
+
+        Intent myIntent = new Intent(getApplicationContext(), MenuActivity.class);
+        myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(myIntent);
+
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
+        }
+
+        Toast.makeText(this, "환영합니다.", Toast.LENGTH_SHORT).show();
 
         //개발단계에서는 버튼을 이용한 화면전환(임시)
         Button btnStart = (Button) findViewById(R.id.btnStart);
@@ -81,12 +91,35 @@ public class MainActivity extends AppCompatActivity {
                     column = sh.getColumns();
 
                     for(int r = 1; r < row; r++) {
+                        for(int c = 0; c < column; c++) {
+                            Cell sheetCell = sh.getCell(c,r);
+
+                            switch(c) {
+                                case 1:
+                                    bugName_eg = sheetCell.getContents();
+                                    break;
+                                case 2:
+                                    bugName_ko = sheetCell.getContents();
+                                    break;
+                                case 3:
+                                    symptom = r + "번째 증상";
+                                    break;
+                                case 4:
+                                    content = sheetCell.getContents();
+                                    break;
+                                case 5:
+                                    management = sheetCell.getContents();
+                                    break;
+                                }
+                            }
+                        //insertData(bugName_eg, bugName_eg, symptom, content, management);
+
+
                         Cell sheetCell = sh.getCell(2, r);
                         bugName_ko = sheetCell.getContents();
 
-                        //txtSample.append(bugName_ko + "\n");
+                        txtSample.append(bugName_ko + "\n");
                         updateDate(bugName_ko, r);
-                        //insertData(bugName_eg, bugName_eg, symptom, content, management);
                     }
 
                 } catch (IOException e) {
@@ -94,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
                 } catch (BiffException e) {
                     e.printStackTrace();
                 }
-
 */
             }
         });
@@ -104,7 +136,8 @@ public class MainActivity extends AppCompatActivity {
         db = openOrCreateDatabase("bugs.db", MODE_PRIVATE, null);
 
         if(db != null) {
-            String sql = "delete bug;";
+            //String sql = "delete bug;";
+            String sql = "create table bug (bugNum integer PRIMARY KEY autoincrement, bugName_eg text, bugName_ko text, symptom text, content text, management text);";
             //db.execSQL(sql);
         }
     }

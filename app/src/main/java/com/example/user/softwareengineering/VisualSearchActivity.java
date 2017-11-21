@@ -85,6 +85,7 @@ public class VisualSearchActivity extends AppCompatActivity {
                     // VisualSearchActivity에서 사진을 보내므로 결과 또한 해당 액티비티에서 받아서 사용한다.
 
                     Intent myIntent = new Intent(getApplicationContext(), DiseaseActivity.class);
+                    myIntent.putExtra("BUG_NAME", "달팽이");
                     startActivity(myIntent);
                 }
                 else    // 사진을 업로드 하지 않은 경우 경고 메시지 출력
