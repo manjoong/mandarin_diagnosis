@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lin_lay"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ffffff"
     android:layout_gravity="center"
-    android:id="@+id/lin_lay"
+    android:background="#9FEDF1"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -16,12 +17,12 @@
         android:gravity="center_horizontal"
         android:text="딥 러닝 기반 \n 감귤 병해충 진단 애플리케이션"
         android:textSize="30dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/splash"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:background="@drawable/s_img" />
 
 </LinearLayout>

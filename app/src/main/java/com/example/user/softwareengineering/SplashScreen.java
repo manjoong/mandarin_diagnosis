@@ -52,7 +52,7 @@ public class SplashScreen extends Activity {
             column = sh.getColumns();
 
             for(int r = 1; r < row; r++) {
-                for(int c = 0; c < column; c++) {
+                for(int c = 1; c < column; c++) {
                     Cell sheetCell = sh.getCell(c,r);
 
                     switch(c) {
@@ -73,16 +73,15 @@ public class SplashScreen extends Activity {
                             break;
                     }
                 }
+
                 insertData(bugName_eg, bugName_ko, symptom, content, management);
 
 /*
-                    Cell sheetCell = sh.getCell(2, r);
-                    bugName_ko = sheetCell.getContents();
+                    Cell sheetCell = sh.getCell(3, r);
+                    symptom = sheetCell.getContents();
 
-                    txtSample.append(bugName_ko + "\n");
-                    updateDate(bugName_ko, r);*/
+                    updateDate(symptom, r);*/
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -93,22 +92,25 @@ public class SplashScreen extends Activity {
                 try {
                     int waited = 0;
                     // Splash screen pause time
+
                     while (waited < 3500) {
                         sleep(100);
                         waited += 100;
                     }
+
                     Intent intent = new Intent(SplashScreen.this, MenuActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
+
                     SplashScreen.this.finish();
                 } catch (InterruptedException e) {
                     // do nothing
                 } finally {
                     SplashScreen.this.finish();
                 }
-
             }
         };
+
         splashTread.start();
     }
 
