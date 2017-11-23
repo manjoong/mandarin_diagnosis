@@ -7,7 +7,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/orange"
         android:label="딥 러닝 기반 감귤 병해충 진단"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"

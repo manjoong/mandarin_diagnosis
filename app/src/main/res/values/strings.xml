@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">SoftwareEngineering</string>
+    <string name="app_name">감귤 병해충 진단</string>
     <string name="keysearchactivity">KeySearchActivity</string>
 </resources>
