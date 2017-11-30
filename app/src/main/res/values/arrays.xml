@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="data_spinner">
+    <string-array name="bug_spinner">
         <item>전체보기</item>
         <item>썩덩나무노린재</item>
         <item>귤애가루깍지벌레</item>
         <item>귤가루이</item>
         <item>왕담배나방</item>
         <item>이세리아깍지벌레</item>
-        <item>말매미</item>
+        <item>애매미</item>
         <item>풀색노린재</item>
-        <item>내눈쑥가지나방</item>
-        <item>주머니깍지벌레</item>
-        <item>멸구류(통칭)</item>
+        <item>네눈쑥가지나방</item>
+        <item>짚신깍지벌레</item>
+        <item>선녀벌레</item>
         <item>뿔밀깍지벌레</item>
         <item>차잎말이나방</item>
         <item>루비깍지벌레</item>
         <item>풍뎅이</item>
         <item>달팽이</item>
+    </string-array>
+
+    <string-array name="symptom_spinner">
+        <item>전체보기</item>
+        <item>식물을 흡즙</item>
+        <item>과실낙과</item>
+        <item>과피에 흑갈색 반점</item>
+        <item>과육착색</item>
+        <item>과실부패</item>
+        <item>흑갈색 딱지</item>
+        <item>배설물로 인한 그을음병</item>
+        <item>잎이 누레짐</item>
+        <item>잎과 과실을 먹음</item>
+        <item>가지가 마름</item>
+        <item>뿌리를 해침</item>
     </string-array>
 
 </resources>

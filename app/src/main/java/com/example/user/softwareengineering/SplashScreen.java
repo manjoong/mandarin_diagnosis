@@ -63,7 +63,7 @@ public class SplashScreen extends Activity {
                             bugName_ko = sheetCell.getContents();
                             break;
                         case 3:
-                            symptom = r + "번째 증상";
+                            symptom = sheetCell.getContents();
                             break;
                         case 4:
                             content = sheetCell.getContents();

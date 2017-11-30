@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -30,34 +31,53 @@ public class KeySearchActivity extends AppCompatActivity {
     TextView txtBug;
     Spinner spnBug;
 
+    ArrayAdapter spnAdapter;
+
     SQLiteDatabase db;
 
     DiagnosisItem[] diagnosisItems;
     DiagnosisAdapter adapter;
 
-    String bugName_ko = "전체보기";
+    String key = "전체보기";
     int itemNum;
+
+    String REQUEST_CODE;
+
+    private void initActivity() {
+        btnSearch  = (Button) findViewById(R.id.btnSearch);
+        spnBug = (Spinner) findViewById(R.id.spnBug);
+        listView = (ListView) findViewById(R.id.listView);
+        txtBug = (TextView) findViewById(R.id.txtBug);
+
+        Intent intent = getIntent();
+        REQUEST_CODE = intent.getStringExtra("REQUEST_CODE");
+
+        if(REQUEST_CODE.equals("bugName")) {
+            spnAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.bug_spinner, android.R.layout.simple_spinner_item);
+        }
+        else if(REQUEST_CODE.equals("symptom")) {
+            spnAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.symptom_spinner, android.R.layout.simple_spinner_item);
+        }
+
+        Toast.makeText(this, REQUEST_CODE, Toast.LENGTH_SHORT).show();
+
+        spnBug.setAdapter(spnAdapter);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_key_search);
 
-        btnSearch  = (Button) findViewById(R.id.btnSearch);
-        spnBug = (Spinner) findViewById(R.id.spnBug);
-        listView = (ListView) findViewById(R.id.listView);
-        txtBug = (TextView) findViewById(R.id.txtBug);
+        initActivity();
 
-        findDatabase(bugName_ko);
-
-        ArrayAdapter spnAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.data_spinner, android.R.layout.simple_spinner_item);
-        spnBug.setAdapter(spnAdapter);
+        findDatabase(key);
 
         spnBug.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                bugName_ko = String.valueOf(parent.getItemAtPosition(position));
-                txtBug.setText(bugName_ko);
+                key = String.valueOf(parent.getItemAtPosition(position));
+                txtBug.setText(key);
             }
 
             @Override
@@ -71,7 +91,7 @@ public class KeySearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                findDatabase(bugName_ko);
+                findDatabase(key);
 
                 listView.setAdapter(adapter);
 
@@ -126,17 +146,31 @@ public class KeySearchActivity extends AppCompatActivity {
         }
     }
 
-    private void findDatabase(String bugName_ko) {
+    private void findDatabase(String key) {
         db = openOrCreateDatabase("bugs.db", MODE_PRIVATE, null);
 
         if(db != null) {
-            String sql;
+            String sql = null;
 
-            if(!bugName_ko.equals("전체보기")) {
-                sql = "select bugNum, bugName_ko, symptom from bug where bugName_ko = \"" + bugName_ko + "\";";
+            if(REQUEST_CODE.equals("bugName")) {
+
+                Toast.makeText(this, "bugName 검색", Toast.LENGTH_SHORT).show();
+                if(!key.equals("전체보기")) {
+                    sql = "select bugNum, bugName_ko, symptom from bug where bugName_ko = \"" + key + "\";";
+                }
+                else {
+                    sql = "select bugNum, bugName_ko, symptom from bug;";
+                }
             }
-            else {
-                sql = "select bugNum, bugName_ko, symptom from bug;";
+            else if(REQUEST_CODE.equals("symptom")) {
+
+                Toast.makeText(this, "symptom 검색", Toast.LENGTH_SHORT).show();
+                if(!key.equals("전체보기")) {
+                    sql = "select bugNum, bugName_ko, symptom from bug where symptom like \'%" + key + "%\';";
+                }
+                else {
+                    sql = "select bugNum, bugName_ko, symptom from bug;";
+                }
             }
 
             Cursor cursor = db.rawQuery(sql, null);

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -31,9 +32,19 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(getApplicationContext(), KeySearchActivity.class);
+                myIntent.putExtra("REQUEST_CODE", "bugName");
                 startActivity(myIntent);
             }
         });
 
+        Button btnSymptomSearch = (Button) findViewById(R.id.btnSymptomSearch);
+        btnSymptomSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(getApplicationContext(), KeySearchActivity.class);
+                myIntent.putExtra("REQUEST_CODE", "symptom");
+                startActivity(myIntent);
+            }
+        });
     }
 }
