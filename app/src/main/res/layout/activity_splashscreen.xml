@@ -15,7 +15,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
-        android:text="딥 러닝 기반 \n 감귤 병해충 진단 애플리케이션"
+        android:text="스마트 \n 감귤 병해충 탐색"
         android:textSize="30dp"
         android:textStyle="bold" />
 
